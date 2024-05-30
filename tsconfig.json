@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es2020",
     "module": "ESNext",
-    "jsx": "react-jsx", // Используем новый JSX transform
+    "jsx": "react-jsx",
     "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"],
+  "include": ["src"]
 }

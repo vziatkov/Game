@@ -10,11 +10,6 @@ const config: Config = {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
-  // Дополнительные опции, если необходимо
-  // setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
-  // collectCoverage: true,
-  // coverageDirectory: 'coverage',
-  // coverageReporters: ['text', 'lcov'],
 };
 
 export default config;
