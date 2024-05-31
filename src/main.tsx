@@ -1,16 +1,19 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
+import { createPreloader } from './preloader';
 
-const App = () => {
-    return (
-        <div>
-            Привет, мир!
-        </div>
-    );
+const tick = async (t:number) => new Promise((resolve) => setTimeout(resolve, t));
+
+const init = async function(){
+    const preloaderCleanup = createPreloader();
+    await tick(10000); // give chance to see mu nice preloader
+    const { default: loadGame } = await import('./game');
+    const gameInstance = loadGame('gamePixi', 'root');
+    preloaderCleanup();
+    return () => {
+        gameInstance.cleanup();
+    };
 };
 
-const rootElement = document.getElementById('root');
-if (rootElement) {
-    const root = createRoot(rootElement);
-    root.render(<App />);
-}
+init().then(cleanup => {
+    // Optionally, handle cleanup when necessary
+    window.addEventListener('beforeunload', cleanup);
+});
