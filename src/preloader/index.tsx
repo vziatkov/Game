@@ -5,13 +5,15 @@ const smallCircleDiameter = 25;
 
 const canvas = document.getElementById("preloader") as HTMLCanvasElement;
 const ctx = canvas?.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const scaleFactor = 4; // for antialias
+canvas.width = window.innerWidth * scaleFactor;
+canvas.height = window.innerHeight * scaleFactor;
 
 const maxNumCircles = 100;
-const centerX = canvas.width / 2;
-const centerY = canvas.height / 2;
-const maxAccelerationCentalCircle = 0.5;
+const centerX = canvas.width / 2 / scaleFactor;
+const centerY = canvas.height / 2 / scaleFactor;
+
+const maxAccelerationCentalCircle = 0.6;
 const centralCircle: Circle = {
     x: centerX,
     y: centerY,
@@ -74,8 +76,8 @@ export const createPreloader = function () {
 
     let circles: Circle[] = [];
     let animationFrameId: number | null = null;
-    let rotationSpeed = 0.1;
-    let centralCircleAcceleration = 0.004;
+    let rotationSpeed = 0.001;
+    let centralCircleAcceleration = 0.001;
 
     function createCircle(): Circle {
         const x = centerX;
@@ -101,7 +103,7 @@ export const createPreloader = function () {
         ctx.translate(circle.x, circle.y);
         ctx.rotate(circle.rotation);
         ctx.imageSmoothingEnabled = true;
-        ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
+        ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2 );
         ctx.restore();
     };
 
@@ -118,7 +120,7 @@ export const createPreloader = function () {
 
     function animate() {
         if (!ctx) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width / scaleFactor, canvas.height / scaleFactor);
 
         // Update and draw small circles
         circles.forEach((circle, index) => {
@@ -129,9 +131,9 @@ export const createPreloader = function () {
                 drawCircle(circle, smallOffscreenCanvas);
                 if (
                     circle.y <= smallCircleDiameter ||
-                    circle.y + smallCircleDiameter >= canvas.height ||
+                    circle.y + smallCircleDiameter >= canvas.height / scaleFactor ||
                     circle.x <= smallCircleDiameter ||
-                    circle.x + smallCircleDiameter >= canvas.width
+                    circle.x + smallCircleDiameter >= canvas.width / scaleFactor
                 ) {
                     circle.burst = true;
                     createParticles(circle);
@@ -180,7 +182,7 @@ export const createPreloader = function () {
             cancelAnimationFrame(animationFrameId);
         }
         if (ctx) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width / scaleFactor, canvas.height / scaleFactor);
         }
         circles = [];
     }
