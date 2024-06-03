@@ -177,7 +177,7 @@ export const createPreloader = function () {
     createCircles(speedToCountSmallCircles(rotationSpeed));
     animate();
 
-    return async function () {
+    return function () {
         if (animationFrameId !== null) {
             cancelAnimationFrame(animationFrameId);
         }
@@ -185,5 +185,6 @@ export const createPreloader = function () {
             ctx.clearRect(0, 0, canvas.width / scaleFactor, canvas.height / scaleFactor);
         }
         circles = [];
+        canvas.style.display = "none";
     }
 };
