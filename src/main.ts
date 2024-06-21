@@ -10,14 +10,12 @@ const init = async function () {
         throw new Error("USTA's - we cant find our ship");
     }
     const preloaderCleanup = createPreloader();
-    await tick(15000); // give chance to see mu nice preloader
+    //await tick(15000); // give chance to see mu nice preloader
     const { default: loadGame } = await import('./game');
 
     const cleanGame = loadGame({ pixiRoot, reactRoot });
     preloaderCleanup();
-    return () => {
-        cleanGame();
-    };
+    return cleanGame;
 };
 
 init().then(cleanup => {
