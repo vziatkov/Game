@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Commercial licensing and support
+    url: https://example.com/licensing
+    about: Paid-only. Free issues/PRs will be closed.
