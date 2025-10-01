@@ -1,20 +1,24 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import swc from 'unplugin-swc';
-import { terser } from 'rollup-plugin-terser';
 import visualizer from 'rollup-plugin-visualizer';
 import compression from 'vite-plugin-compression';
+import path from 'path';
 
 export default defineConfig(({ mode }) => {
   return {
     plugins: [
       react(),
       swc.vite(),
-      mode === 'production' && terser(),
       mode === 'production' && visualizer({ open: true }),
       mode === 'production' && compression()
     ].filter(Boolean),
     esbuild: false,
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      }
+    },
     build: {
       sourcemap: mode === 'development',
       minify: 'terser',

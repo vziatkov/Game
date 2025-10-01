@@ -6,7 +6,7 @@ const loadGame = async({pixiRoot, reactRoot}: {pixiRoot:HTMLElement, reactRoot: 
   const store = new Store();
   const pixiMain = new PixiMain(pixiRoot);
   await pixiMain.init();
-  const reactDestructor = createReactMain(reactRoot);
+  const reactDestructor = createReactMain(reactRoot, store);
   store.preloader.updateIsLoaded(true);
   return () => {
     reactDestructor();

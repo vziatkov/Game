@@ -24,5 +24,10 @@ export default [
     rules: {
       // Ваши собственные правила ESLint
     },
+    settings: {
+      react: {
+        version: 'detect'
+      }
+    }
   },
 ];

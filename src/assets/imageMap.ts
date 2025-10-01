@@ -1,6 +1,9 @@
-export const imagePath = {
-    bgImage: "src/assets/images/bg.webp",
-    pirate: "src/assets/images/pirate.png",
-    wheel: "src/assets/images/wheel.webp"
+import bgImageUrl from './images/bg.webp';
+import pirateUrl from './images/pirate.png';
+import wheelUrl from './images/wheel.webp';
 
-}
+export const imagePath = {
+    bgImage: bgImageUrl,
+    pirate: pirateUrl,
+    wheel: wheelUrl,
+};

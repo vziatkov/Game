@@ -1,4 +1,4 @@
-import { Application, Container, Sprite } from "pixi.js";
+import { Application, Container } from "pixi.js";
 import { BaseGameSprite } from "./scenes/BaseGameSprite";
 import { imagePath } from "../../assets/imageMap";
 
@@ -51,7 +51,9 @@ export class PixiMain extends Application {
 
     public destroy() {
         window.removeEventListener("resize", this.resizeGame);
+        this.sprites.forEach(s => s.destroy({ texture: true, baseTexture: true }));
+        this._pixiContainer.destroy({ children: true });
         super.destroy();
-        console.log("remove other needed stuff");
+        console.log("Pixi resources destroyed");
     }
 }

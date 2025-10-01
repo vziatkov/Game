@@ -1,15 +1,11 @@
-import { action, observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
-type DefaultValues = {
-    appLoaded: boolean
-}
 export class Preloader {
-    @observable
-    public appLoaded;
-    constructor({appLoaded}: Partial<DefaultValues> = {}){
+    public appLoaded: boolean;
+    constructor({appLoaded}: Partial<{appLoaded: boolean}> = {}){
         this.appLoaded = appLoaded ?? false;
+        makeAutoObservable(this);
     }
-    @action
     public updateIsLoaded(value: boolean){
         this.appLoaded = value;
     }

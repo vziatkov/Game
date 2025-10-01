@@ -16,4 +16,7 @@ export class BaseGameSprite extends Sprite{
         }
     }
 
+    public destroy(options?: any){
+        super.destroy(options);
+    }
 }

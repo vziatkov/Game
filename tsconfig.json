@@ -9,7 +9,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "types": ["node"],
+    "resolveJsonModule": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2020"]
   },
-  "include": ["src"]
+  "include": ["src", "src/types.d.ts"]
 }
