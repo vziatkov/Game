@@ -2,7 +2,7 @@
  * Point-free (pipe-friendly) version of Math.min
  * Returns a curried function that can be used in function composition
  * 
- * @param threshold - The maximum value to compare against
+ * @param threshold - The threshold value for comparison
  * @returns A function that takes a value and returns the minimum of the two
  * 
  * @example
