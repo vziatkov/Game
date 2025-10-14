@@ -11,28 +11,76 @@
       width: 100%;
       height: 100%;
       background-color: black;
+      background-image: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s ease;
     }
+    
+    /* Центральная туманность/свечение для джойстика */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at var(--light-x, 50%) var(--light-y, 50%),
+          rgba(0, 255, 255, 0.15) 0%,
+          rgba(255, 0, 255, 0.1) 30%,
+          transparent var(--light-size, 40%));
+      pointer-events: none;
+      transition: all 0.5s ease;
+      z-index: 0;
+    }
+    
     #root {
       width: 100%;
       height: 100%;
+      position: relative;
+      z-index: 1;
     }
+    
+    #uiRoot {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      pointer-events: none;
+    }
+    
+    #uiRoot > * {
+      pointer-events: all;
+    }
+    
+    #gamePixi {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    
     canvas {
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
       right: 0;
-
+      z-index: 1;
     }
   </style>
 </head>
 <body>
   <main role="main">
     <div id="gamePixi" color="black"></div>
-    <div id="reactRoot"></div>
+    <div id="uiRoot"></div>
     <canvas id="preloader" color="black"></canvas>
   </main>
   <script type="module" src="/src/main.ts"></script>

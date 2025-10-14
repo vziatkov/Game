@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import swc from 'unplugin-swc';
 import visualizer from 'rollup-plugin-visualizer';
 import compression from 'vite-plugin-compression';
@@ -8,7 +7,6 @@ import path from 'path';
 export default defineConfig(({ mode }) => {
   return {
     plugins: [
-      react(),
       swc.vite(),
       mode === 'production' && visualizer({ open: true }),
       mode === 'production' && compression()

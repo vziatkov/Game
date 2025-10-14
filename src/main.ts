@@ -2,13 +2,13 @@ import { createPreloader } from './preloader';
 
 const init = async function () {
     const pixiRoot = document.getElementById("gamePixi");
-    const reactRoot = document.getElementById("reactRoot");
-    if (!pixiRoot || !reactRoot) {
+    const uiRoot = document.getElementById("uiRoot");
+    if (!pixiRoot || !uiRoot) {
         throw new Error("Roots not found");
     }
     const preloaderCleanup = createPreloader();
     const { default: loadGame } = await import('./game');
-    const cleanup = await loadGame({ pixiRoot, reactRoot });
+    const cleanup = await loadGame({ pixiRoot, uiRoot });
     preloaderCleanup();
     return cleanup;
 };

@@ -1,5 +1,6 @@
 import { createRootActor } from "./actors";
-import { Preloader } from "./preloader"
+import { Preloader } from "./preloader";
+import { joystickStore } from "./joystick";
 
 type DefaultValues = {
     preloader?: Preloader;
@@ -16,6 +17,11 @@ export class Store {
     public get preloader(){
         return this._preloader;
     }
+    
+    public get joystick(){
+        return joystickStore;
+    }
+    
     public destructor(){
         this._actorsDestructor();
     }
