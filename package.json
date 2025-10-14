@@ -27,6 +27,6 @@
     "build": "vite build",
     "test": "jest --config jest.config.ts",
     "serve": "vite preview",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint ."
   }
 }
