@@ -5,7 +5,7 @@ const config: Config = {
     '^.+\\.tsx?$': '@swc/jest',
   },
   testEnvironment: 'jsdom',
-  testMatch: ['**/*.test.tsx'],
+  testMatch: ['**/*.test.tsx', '**/*.test.ts'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
