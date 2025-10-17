@@ -12,9 +12,9 @@ const loadGame = async({ pixiRoot, uiRoot }: { pixiRoot: HTMLElement, uiRoot: HT
   // Инициализация джойстика (vanilla JS)
   const joystick = new Joystick({
     container: uiRoot,
-    onVectorChange: (vector) => {
+    onVectorChange: (_vector) => {
       // Можно добавить дополнительную логику здесь
-      // console.log('Joystick:', vector);
+      console.log('Joystick:', _vector);
     }
   });
   

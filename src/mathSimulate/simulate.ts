@@ -1,7 +1,7 @@
-type GameElement = true | false | "x";
+type GameElement = 'true' | 'false' | 'x';
 type RepeatConfig = { countRepeat: number, winMultiplier: number, mass: GameElement[] };
 
-const mass = ["x",true, false];
+const mass: GameElement[] = ['x','true','false'];
 function tick(ms:number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -41,26 +41,11 @@ export async function doIt() {
 }
 
 const initialBet = 1;
-const first = { countRepeat: 1, winMultiplier: 2, mass: [...mass] as GameElement[] }; // 87
-const second = { countRepeat: 2, winMultiplier: 5, mass: [...mass] as GameElement[] };
-const third = { countRepeat: 3, winMultiplier: 10, mass: [...mass] as GameElement[] };
-const fourth = { countRepeat: 4, winMultiplier: 24, mass: [...mass] as GameElement[] };
-const fifth = { countRepeat: 5, winMultiplier: 55, mass: [...mass] as GameElement[] };
-const six = { countRepeat: 6, winMultiplier: 120, mass: [...mass] as GameElement[] };
-const seven = { countRepeat: 7, winMultiplier: 280, mass: [...mass] as GameElement[] };
-const eight = { countRepeat: 8, winMultiplier: 600, mass: [...mass] as GameElement[] };
-const nine = { countRepeat: 9, winMultiplier: 1400, mass: [...mass] as GameElement[] };
-const ten = { countRepeat: 10, winMultiplier: 3000, mass: [...mass] as GameElement[] };
-const eleven = { countRepeat: 11, winMultiplier: 7000, mass: [...mass] as GameElement[] };
-const twelve = { countRepeat: 12, winMultiplier: 16000, mass: [...mass] as GameElement[] };
-const thirteen = { countRepeat: 13, winMultiplier: 35000, mass: [...mass] as GameElement[] };
-const fourteen = { countRepeat: 14, winMultiplier: 70000, mass: [...mass] as GameElement[] };
-const fifteen = { countRepeat: 15, winMultiplier: 150000, mass: [...mass] as GameElement[] };
-const sixteen = { countRepeat: 16, winMultiplier: 400000, mass: [...mass] as GameElement[] };
-const seventyn = { countRepeat: 17, winMultiplier: 900000, mass: [...mass] as GameElement[] };
+// keep only the repeat configs we use to avoid unused-variable lint issues
+const third: RepeatConfig = { countRepeat: 3, winMultiplier: 10, mass: [...mass] as GameElement[] };
 
 const repeats: RepeatConfig[] = [
-    {...third},
+    { ...third },
 ];
 
 function doItOne(): number {
@@ -86,7 +71,7 @@ const massIndexArray: number[][] = [];
 for (let i = 0; i < 50000; i++) {
     const arr1 = generateRandomNumbers(countGames);
     const arr2 = generateRandomNumbers(countGames);
-    const massIndexes = new Array(countGames);
+    const massIndexes = new Array<number>(countGames);
 
     for (let j = 0; j < countGames; j++) {
         const combinedIndex = Math.abs(arr1[j] ^ arr2[j]);
@@ -108,8 +93,9 @@ function makeOneSimulation(
     }
 
     const micro: Record<GameElement, (useRepeat: number) => [boolean, number]> = {
-        true: (useRepeat) => [true, useRepeat],
-        "x": (useRepeat) => [false, useRepeat + 1]
+        'true': (useRepeat: number): [boolean, number] => [true, useRepeat],
+        'x': (useRepeat: number): [boolean, number] => [false, useRepeat + 1],
+        'false': (useRepeat: number): [boolean, number] => [false, useRepeat]
     };
     
     function playGame({ countRepeat, mass, winMultiplier }: RepeatConfig) {
@@ -117,7 +103,7 @@ function makeOneSimulation(
         let useRepeat = countRepeat;
         for (let i = 0; i < useRepeat; i++) {
             const currentIndex = mass[massIndexArray[indexG][i]];
-            if (currentIndex === false || (!retry && currentIndex === "x")) {
+            if (currentIndex === 'false' || (!retry && currentIndex === 'x')) {
                 return;
             }
             [retry, useRepeat] = micro[currentIndex](useRepeat);

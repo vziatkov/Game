@@ -33,9 +33,11 @@ export class AIPlayer extends BaseGameSprite {
     };
   }
 
-  public applyNetworkPayload = (payload: any) => {
-    if (payload?.scenario) this.currentScenario = payload.scenario;
-    if (Array.isArray(payload?.history)) this.chatHistory = payload.history;
+  public applyNetworkPayload = (payload: unknown) => {
+    if (!payload || typeof payload !== 'object') return;
+    const p = payload as Record<string, unknown>;
+    if (typeof p.scenario === 'string') this.currentScenario = p.scenario;
+    if (Array.isArray(p.history)) this.chatHistory = p.history.map(String);
   }
 
   public getChatHistory = (): string[] => {
