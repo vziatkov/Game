@@ -109,29 +109,31 @@ export class Joystick {
     this.centerY = rect.top + rect.height / 2;
   }
 
-  private getEventPosition(e: any): { x: number; y: number } {
-    if (e.touches && e.touches[0]) {
-      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-    } else if (e.changedTouches && e.changedTouches[0]) {
-      return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+  private getEventPosition(e: Event): { x: number; y: number } {
+    const ev = e as TouchEvent | PointerEvent | MouseEvent;
+    if ('touches' in ev && ev.touches && ev.touches[0]) {
+      return { x: ev.touches[0].clientX, y: ev.touches[0].clientY };
+    } else if ('changedTouches' in ev && ev.changedTouches && ev.changedTouches[0]) {
+      return { x: ev.changedTouches[0].clientX, y: ev.changedTouches[0].clientY };
     } else {
-      return { x: e.clientX, y: e.clientY };
+      const mev = ev as MouseEvent | PointerEvent;
+      return { x: mev.clientX, y: mev.clientY };
     }
   }
 
-  private handleStart = (e: any): void => {
+  private handleStart = (e: Event): void => {
     e.preventDefault();
     this.isActive = true;
     this.joystickElement.classList.add('touch-feedback');
     this.updateJoystickRect();
 
     // Вибрация
-    if (navigator.vibrate) {
-      navigator.vibrate(50);
+    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+      (navigator as any).vibrate(50);
     }
   };
 
-  private handleMove = (e: any): void => {
+  private handleMove = (e: Event): void => {
     if (!this.isActive) return;
     e.preventDefault();
 
@@ -147,7 +149,7 @@ export class Joystick {
     this.needsRender = true;
   };
 
-  private handleEnd = (e: any): void => {
+  private handleEnd = (e: Event): void => {
     if (!this.isActive) return;
     e.preventDefault();
 

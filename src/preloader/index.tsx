@@ -77,7 +77,7 @@ export const createPreloader = function () {
     let circles: Circle[] = [];
     let animationFrameId: number | null = null;
     let rotationSpeed = 0.001;
-    let centralCircleAcceleration = 0.001;
+    const centralCircleAcceleration = 0.001;
 
     function createCircle(): Circle {
         const x = centerX;

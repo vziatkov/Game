@@ -16,7 +16,7 @@ export class GameScene extends Container {
   async init() {
     this.aiPlayer = new AIPlayer('src/assets/images/ai-avatar.webp');
     await this.aiPlayer.init();
-    this.addChild(this.aiPlayer as any);
+    this.addChild(this.aiPlayer as unknown as any);
 
     // Центрируем AI Player
     if (this.aiPlayer) {
@@ -68,7 +68,7 @@ export class GameScene extends Container {
     return response;
   }
 
-  public destroy() {
+  public destroy(): void {
     // Отключаем реакцию при уничтожении сцены
     if (this.joystickDisposer) {
       this.joystickDisposer();
