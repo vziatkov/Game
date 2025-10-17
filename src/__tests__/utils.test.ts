@@ -1,4 +1,4 @@
-import { minFreePipe } from '../utils';
+import { minFreePipe } from 'src/utils';
 
 describe('minFreePipe', () => {
   it('should return the smaller value when value is less than threshold', () => {

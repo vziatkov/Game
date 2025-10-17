@@ -1,4 +1,4 @@
-import { Store } from "..";
+import { Store } from "src/game/store";
 import { createPreloader } from "./preloader";
 
 export function createRootActor(store: Store){

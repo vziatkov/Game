@@ -12,7 +12,12 @@
     "emitDecoratorMetadata": true,
     "types": ["node"],
     "resolveJsonModule": true,
-    "lib": ["DOM", "DOM.Iterable", "ES2020"]
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"],
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src", "src/types.d.ts"]
 }

@@ -1,5 +1,5 @@
 import { reaction } from "mobx";
-import { Store } from "../..";
+import { Store } from "src/game/store";
 
 export function createPreloader(store: Store) {
     const container = [

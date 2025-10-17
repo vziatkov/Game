@@ -1,4 +1,4 @@
-import { centralYinYangSVG, smallYinYangSVG } from "./assets";
+import { centralYinYangSVG, smallYinYangSVG } from "src/preloader/assets";
 
 const centralCircleDiameter = 60;
 const smallCircleDiameter = 25;

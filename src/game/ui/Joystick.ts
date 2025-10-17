@@ -1,5 +1,5 @@
-import { joystickStore } from '../store/joystick';
-import './Joystick.css';
+import { joystickStore } from 'src/game/store/joystick';
+import 'src/game/ui/Joystick.css';
 
 interface JoystickConfig {
   container: HTMLElement;

@@ -1,6 +1,6 @@
-import { createRootActor } from "./actors";
-import { Preloader } from "./preloader";
-import { joystickStore } from "./joystick";
+import { createRootActor } from "src/game/store/actors";
+import { Preloader } from "src/game/store/preloader/index";
+import { joystickStore } from "src/game/store/joystick";
 
 type DefaultValues = {
     preloader?: Preloader;

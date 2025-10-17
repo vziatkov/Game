@@ -1,4 +1,4 @@
-import { createPreloader } from './preloader';
+import { createPreloader } from 'src/preloader';
 
 const init = async function () {
     const pixiRoot = document.getElementById("gamePixi");

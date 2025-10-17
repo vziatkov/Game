@@ -1,6 +1,6 @@
 import { Container } from 'pixi.js';
-import { AIPlayer } from './AIPlayer';
-import { joystickStore, JoystickVector } from '../../store/joystick';
+import { AIPlayer } from 'src/game/pixi/scenes/AIPlayer';
+import { joystickStore, JoystickVector } from 'src/game/store/joystick';
 import { reaction } from 'mobx';
 
 export class GameScene extends Container {

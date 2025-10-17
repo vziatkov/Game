@@ -1,6 +1,6 @@
-import { PixiMain } from "./pixi";
-import { Store } from "./store";
-import { Joystick } from "./ui/Joystick";
+import { PixiMain } from "src/game/pixi";
+import { Store } from "src/game/store";
+import { Joystick } from "src/game/ui/Joystick";
 
 const loadGame = async({ pixiRoot, uiRoot }: { pixiRoot: HTMLElement, uiRoot: HTMLElement }) => {
   const store = new Store();

@@ -1,5 +1,5 @@
-import { BaseGameSprite } from './BaseGameSprite';
-import { generatePrompt, generateScenario } from '../../store/ai';
+import { BaseGameSprite } from 'src/game/pixi/scenes/BaseGameSprite';
+import { generatePrompt, generateScenario } from 'src/game/store/ai';
 
 export class AIPlayer extends BaseGameSprite {
   private currentScenario: string = '';
