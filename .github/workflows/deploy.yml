@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - main
+  # Temporarily disabled - deployment is failing
+  workflow_dispatch:
+    inputs:
+      enabled:
+        description: 'Enable deployment (currently disabled)'
+        required: false
+        default: 'false'
 
 permissions:
   contents: read
@@ -12,6 +19,8 @@ permissions:
 
 jobs:
   build-and-deploy:
+    # Temporarily disabled - deployment is failing
+    if: false
     runs-on: ubuntu-latest
     environment:
       name: github-pages
