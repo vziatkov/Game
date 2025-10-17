@@ -5,12 +5,8 @@ on:
     branches:
       - main
   # Temporarily disabled - deployment is failing
+  # Can be manually triggered from Actions tab if needed
   workflow_dispatch:
-    inputs:
-      enabled:
-        description: 'Enable deployment (currently disabled)'
-        required: false
-        default: 'false'
 
 permissions:
   contents: read
